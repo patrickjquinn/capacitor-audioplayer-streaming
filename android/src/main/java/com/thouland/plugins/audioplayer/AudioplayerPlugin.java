@@ -1,12 +1,12 @@
 package com.thouland.plugins.audioplayer;
 
-import android.media.MediaPlayer;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+
+import java.io.IOException;
 
 @CapacitorPlugin(name = "Audioplayer")
 public class AudioplayerPlugin extends Plugin implements onCompletedListener {
@@ -14,7 +14,7 @@ public class AudioplayerPlugin extends Plugin implements onCompletedListener {
     private Audioplayer implementation = new Audioplayer();
 
     @PluginMethod
-    public Void start(PluginCall call) {
+    public Void start(PluginCall call) throws IOException {
         String value = call.getString("url");
         JSObject ret = new JSObject();
         implementation.setup(this);
@@ -105,8 +105,8 @@ public class AudioplayerPlugin extends Plugin implements onCompletedListener {
         notifyListeners("end", null);
     }
 
-    public void onInfo() {
-        notifyListeners("info", null);
+    public void onInfo(JSObject state) {
+        notifyListeners("info", state);
     }
 
     public void onPlaying() {

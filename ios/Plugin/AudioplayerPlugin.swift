@@ -33,6 +33,10 @@ public class AudioplayerPlugin: CAPPlugin {
     @objc func onPaused() {
         notifyListeners("pause", data: nil);
     }
+
+    @objc func onInfo(info: [String: Any]) {
+        notifyListeners("info", data: info);
+    }
     
     @objc func isPlaying(_ call: CAPPluginCall) {
         call.resolve([

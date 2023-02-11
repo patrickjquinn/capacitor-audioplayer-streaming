@@ -1,4 +1,4 @@
-import { Plugin } from "@capacitor/core";
+import type { Plugin } from "@capacitor/core";
 
 export interface AudioplayerPlugin extends Plugin{
   start(options: { url: string }): Promise<any>;
